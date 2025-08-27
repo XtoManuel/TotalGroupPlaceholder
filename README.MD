@@ -10,9 +10,9 @@ TotalGroupPlaceholder is a plugin for Minecraft servers that allows you to manag
 
 ## Installation
 
-1. Download the `TotalGroupPlaceholder-1.0.jar` file from the `target/` folder.
+1. Download the `TotalGroupPlaceholder-<version>.jar` file.
 2. Place the `.jar` file in your server's `plugins` folder (Spigot/Paper).
-3. Make sure you have [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) installed.
+3. Make sure you have [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) installed. (v2.11.6)
 4. Restart your server.
 
 ## Usage
