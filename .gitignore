@@ -1,1 +1,6 @@
+# GitHub user config
+config
+.git-credentials
+
+# Plugin output
 /target

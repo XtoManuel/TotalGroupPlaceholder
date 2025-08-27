@@ -1,4 +1,4 @@
-package com.usuario.totalgroupplaceholder;
+package com.user.totalgroupplaceholder;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
@@ -12,9 +12,9 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getLogger().info("TotalGroupPlaceholder habilitado!");
+        getLogger().info("TotalGroupPlaceholder enabled!");
 
-        // Registrar comando y autocompletado
+        // Register command and tab completion
         if (getCommand("totalgroup") != null) {
             TotalGroupCommand cmd = new TotalGroupCommand();
             getCommand("totalgroup").setExecutor(cmd);
@@ -23,16 +23,16 @@ public class Main extends JavaPlugin {
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new TotalGroupExpansion().register();
-            getLogger().info("Expansion de PlaceholderAPI registrada correctamente.");
+            getLogger().info("PlaceholderAPI expansion registered successfully.");
         } else {
-            getLogger().warning("PlaceholderAPI no está instalado, deshabilitando plugin...");
+            getLogger().warning("PlaceholderAPI is not installed, disabling plugin...");
             getServer().getPluginManager().disablePlugin(this);
         }
     }
 
     @Override
     public void onDisable() {
-        getLogger().info("TotalGroupPlaceholder deshabilitado.");
+        getLogger().info("TotalGroupPlaceholder disabled.");
     }
 
 }

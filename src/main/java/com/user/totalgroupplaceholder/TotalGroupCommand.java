@@ -1,4 +1,4 @@
-package com.usuario.totalgroupplaceholder;
+package com.user.totalgroupplaceholder;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -19,23 +19,22 @@ public class TotalGroupCommand implements TabExecutor {
         try {
             luckPerms = LuckPermsProvider.get();
         } catch (IllegalStateException e) {
-            sender.sendMessage(ChatColor.RED + "LuckPerms no disponible");
+                sender.sendMessage(ChatColor.RED + "LuckPerms not available");
             return true;
         }
 
 
         if (args.length == 0 || args[0].equalsIgnoreCase("help")) {
-            sender.sendMessage(ChatColor.GOLD + "==== TotalGroupPlaceholder ====");
-            sender.sendMessage(ChatColor.YELLOW + "Uso: " + ChatColor.WHITE + "/totalgroup <grupo|all|help>");
-            sender.sendMessage(ChatColor.GRAY + "Permiso requerido: " + ChatColor.WHITE + "totalgroup.use");
-            sender.sendMessage("");
-            sender.sendMessage(ChatColor.AQUA + "Placeholders disponibles:");
-            sender.sendMessage(ChatColor.WHITE + "%totalgroup_" + ChatColor.GRAY + "<grupo>" + ChatColor.WHITE + "%");
-            sender.sendMessage("");
-            sender.sendMessage(ChatColor.AQUA + "Grupos LuckPerms actuales:");
-            // luckPerms ya está definido arriba
+                sender.sendMessage(ChatColor.GOLD + "==== TotalGroupPlaceholder ====");
+                sender.sendMessage(ChatColor.YELLOW + "Usage: " + ChatColor.WHITE + "/totalgroup <group|all|help>");
+                sender.sendMessage(ChatColor.GRAY + "Required permission: " + ChatColor.WHITE + "totalgroup.use");
+                sender.sendMessage("");
+                sender.sendMessage(ChatColor.AQUA + "Available placeholders:");
+                sender.sendMessage(ChatColor.WHITE + "%totalgroup_" + ChatColor.GRAY + "<group>" + ChatColor.WHITE + "%");
+                sender.sendMessage("");
+                sender.sendMessage(ChatColor.AQUA + "Current LuckPerms groups:");
             for (Group group : luckPerms.getGroupManager().getLoadedGroups()) {
-                sender.sendMessage(ChatColor.GRAY + "- " + ChatColor.WHITE + "%totalgroup_" + group.getName().toLowerCase() + "%");
+                    sender.sendMessage(ChatColor.GRAY + "- " + ChatColor.WHITE + "%totalgroup_" + group.getName().toLowerCase() + "%");
             }
             sender.sendMessage(ChatColor.GOLD + "=============================");
             return true;
@@ -50,7 +49,7 @@ public class TotalGroupCommand implements TabExecutor {
                         .get();
                     sender.sendMessage(group.getName() + ": " + count);
                 } catch (Exception e) {
-                    sender.sendMessage(group.getName() + ": Error");
+                        sender.sendMessage(group.getName() + ": Error");
                 }
             }
             return true;
@@ -59,7 +58,7 @@ public class TotalGroupCommand implements TabExecutor {
         String groupName = args[0].toLowerCase();
         Group group = luckPerms.getGroupManager().getGroup(groupName);
         if (group == null) {
-            sender.sendMessage("Grupo no encontrado");
+                sender.sendMessage("Group not found");
             return true;
         }
         try {
@@ -69,7 +68,7 @@ public class TotalGroupCommand implements TabExecutor {
                 .get();
             sender.sendMessage(String.valueOf(count));
         } catch (Exception e) {
-            sender.sendMessage("Error al buscar miembros");
+                sender.sendMessage("Error while searching for members");
         }
         return true;
     }
