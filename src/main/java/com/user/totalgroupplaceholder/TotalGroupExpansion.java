@@ -1,4 +1,4 @@
-package com.usuario.totalgroupplaceholder;
+package com.user.totalgroupplaceholder;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
@@ -29,13 +29,13 @@ public class TotalGroupExpansion extends PlaceholderExpansion {
         try {
             luckPerms = LuckPermsProvider.get();
         } catch (IllegalStateException e) {
-            return "LuckPerms no disponible";
+                return "LuckPerms not available";
         }
 
         String groupName = params.toLowerCase();
         Group group = luckPerms.getGroupManager().getGroup(groupName);
         if (group == null) {
-            return "Grupo no encontrado";
+                return "Group not found";
         }
 
         try {
@@ -44,9 +44,9 @@ public class TotalGroupExpansion extends PlaceholderExpansion {
                 .get();
         } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
-            return "Interrumpido al buscar miembros";
+                return "Interrupted while searching for members";
         } catch (Exception e) {
-            return "Error al buscar miembros";
+                return "Error while searching for members";
         }
     }
 }
