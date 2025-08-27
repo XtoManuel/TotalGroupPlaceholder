@@ -41,7 +41,13 @@ public class TotalGroupCommand implements TabExecutor {
         }
 
         if (args[0].equalsIgnoreCase("all")) {
-            for (Group group : luckPerms.getGroupManager().getLoadedGroups()) {
+            List<Group> groups = new ArrayList<>(luckPerms.getGroupManager().getLoadedGroups());
+            groups.sort((g1, g2) -> {
+                int w1 = g1.getWeight().orElse(0);
+                int w2 = g2.getWeight().orElse(0);
+                return Integer.compare(w2, w1); // highest weight first
+            });
+            for (Group group : groups) {
                 try {
                     int count = luckPerms.getUserManager()
                         .searchAll(net.luckperms.api.node.matcher.NodeMatcher.key("group." + group.getName().toLowerCase()))
@@ -49,7 +55,7 @@ public class TotalGroupCommand implements TabExecutor {
                         .get();
                     sender.sendMessage(group.getName() + ": " + count);
                 } catch (Exception e) {
-                        sender.sendMessage(group.getName() + ": Error");
+                    sender.sendMessage(group.getName() + ": Error");
                 }
             }
             return true;
