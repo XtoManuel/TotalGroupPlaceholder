@@ -7,6 +7,7 @@ TotalGroupPlaceholder is a plugin for Minecraft servers that allows you to manag
 - Integration with PlaceholderAPI
 - Custom commands for group management
 - Easy expansion of placeholders
+- Permission support: you can configure permissions to control who can use the commands (permission: `totalgroup.use`)
 
 ## Installation
 
@@ -27,13 +28,10 @@ TotalGroupPlaceholder is a plugin for Minecraft servers that allows you to manag
 
 ## Available Commands
 
+- `/totalgroup` or `/totalgroup help` - Shows information and group management options.
 - `/totalgroup <group>` — Shows the number of members in the specified group.
 - `/totalgroup all` — Shows the number of members for all LuckPerms groups.
 - `/totalgroup help` — Shows help and usage information.
-
-## Commands
-
-- `/totalgroup` - Shows information and group management options.
 
 ## Requirements
 
