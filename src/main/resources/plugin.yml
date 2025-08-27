@@ -1,0 +1,12 @@
+name: TotalGroupPlaceholder
+version: 1.0
+main: com.usuario.totalgroupplaceholder.Main
+api-version: 1.13
+depend: [PlaceholderAPI, LuckPerms]
+
+commands:
+  totalgroup:
+    description: Muestra el número de miembros de un grupo LuckPerms
+    usage: /totalgroup <grupo|all>
+    permission: totalgroup.use
+    default: op

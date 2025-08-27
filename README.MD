@@ -1,0 +1,60 @@
+# TotalGroupPlaceholder
+
+TotalGroupPlaceholder is a plugin for Minecraft servers that allows you to manage and expand custom placeholders using PlaceholderAPI.
+
+## Features
+
+- Integration with PlaceholderAPI
+- Custom commands for group management
+- Easy expansion of placeholders
+
+## Installation
+
+1. Download the `TotalGroupPlaceholder-1.0.jar` file from the `target/` folder.
+2. Place the `.jar` file in your server's `plugins` folder (Spigot/Paper).
+3. Make sure you have [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) installed.
+4. Restart your server.
+
+## Usage
+
+- Use the `/totalgroup` command to manage groups and placeholders.
+- Check the PlaceholderAPI documentation to integrate placeholders into your server.
+
+## Commands
+
+- `/totalgroup` - Shows information and group management options.
+
+## Requirements
+
+- Java 8 or higher
+- Spigot, Paper, or any Bukkit-compatible server
+- PlaceholderAPI
+
+## Project Structure
+
+```text
+src/main/java/com/usuario/totalgroupplaceholder/
+  Main.java
+  TotalGroupCommand.java
+  TotalGroupExpansion.java
+src/main/resources/
+  plugin.yml
+```
+
+## Build
+
+This project uses Maven. To build:
+
+```powershell
+mvn clean package
+```
+
+The compiled file will be in the `target/` folder.
+
+## Credits
+
+Developed by XtoManuel.
+
+## License
+
+This project is licensed under the MIT License.
