@@ -3,7 +3,6 @@ package com.user.totalgroupplaceholder;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
-import org.bukkit.entity.Player;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.model.group.Group;
@@ -81,6 +80,8 @@ public class TotalGroupCommand implements TabExecutor {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        final String PLACEHOLDER_PREFIX = "%totalgroup_";
+        final String PLACEHOLDER_PLUGIN = "totalgroup";
         LuckPerms luckPerms;
         try {
             luckPerms = LuckPermsProvider.get();
@@ -88,7 +89,17 @@ public class TotalGroupCommand implements TabExecutor {
             return Collections.emptyList();
         }
         List<String> completions = new ArrayList<>();
-        if (args.length == 1) {
+        // /papi parse <user> <placeholder>
+        if (command.getName().equalsIgnoreCase("papi") && args.length >= 2 && args[0].equalsIgnoreCase("parse")) {
+            for (Group group : luckPerms.getGroupManager().getLoadedGroups()) {
+                completions.add(PLACEHOLDER_PREFIX + group.getName().toLowerCase() + "%");
+            }
+        // /papi placeholders <plugin> <placeholder>
+        } else if (command.getName().equalsIgnoreCase("papi") && args.length >= 2 && args[0].equalsIgnoreCase("placeholders") && args[1].equalsIgnoreCase(PLACEHOLDER_PLUGIN)) {
+            for (Group group : luckPerms.getGroupManager().getLoadedGroups()) {
+                completions.add(PLACEHOLDER_PREFIX + group.getName().toLowerCase() + "%");
+            }
+        } else if (command.getName().equalsIgnoreCase(PLACEHOLDER_PLUGIN) && args.length == 1) {
             for (Group group : luckPerms.getGroupManager().getLoadedGroups()) {
                 completions.add(group.getName().toLowerCase());
             }
