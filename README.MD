@@ -31,7 +31,6 @@ TotalGroupPlaceholder is a plugin for Minecraft servers that allows you to manag
 - `/totalgroup` or `/totalgroup help` - Shows information and group management options.
 - `/totalgroup <group>` — Shows the number of members in the specified group.
 - `/totalgroup all` — Shows the number of members for all LuckPerms groups.
-- `/totalgroup help` — Shows help and usage information.
 
 ## Requirements
 
