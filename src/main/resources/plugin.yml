@@ -1,5 +1,5 @@
 name: "TotalGroupPlaceholder"
-version: "1.2"
+version: "1.3"
 main: "com.user.totalgroupplaceholder.Main"
 api-version: "1.13"
 api: "PlaceholderAPI"

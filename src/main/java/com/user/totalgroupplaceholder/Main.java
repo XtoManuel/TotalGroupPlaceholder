@@ -5,6 +5,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
 
+    private static final String SUPPORTED_PAPI_VERSION = "2.11.6";
+
     private static final String TOTALGROUP_COMMAND = "totalgroup";
 
     @Override
@@ -18,18 +20,24 @@ public class Main extends JavaPlugin {
             getCommand(TOTALGROUP_COMMAND).setTabCompleter(cmd);
         }
 
-        // Detectar versión de PlaceholderAPI
+        // Detect PlaceholderAPI version
         org.bukkit.plugin.Plugin placeholderApi = Bukkit.getPluginManager().getPlugin("PlaceholderAPI");
         if (placeholderApi != null) {
             String version = placeholderApi.getDescription().getVersion();
-            getLogger().info("PlaceholderAPI version detected: " + version);
-            if (!version.startsWith("2.11.6")) {
-                getLogger().severe("Unsupported PlaceholderAPI version: " + version + ". This plugin only supports 2.11.6. Disabling...");
+            if (getLogger().isLoggable(java.util.logging.Level.INFO)) {
+                getLogger().info(String.format("PlaceholderAPI version detected: %s", version));
+            }
+            if (!version.startsWith(SUPPORTED_PAPI_VERSION)) {
+                if (getLogger().isLoggable(java.util.logging.Level.SEVERE)) {
+                    getLogger().severe(String.format("Unsupported PlaceholderAPI version: %s. This plugin only supports %s. Disabling...", version, SUPPORTED_PAPI_VERSION));
+                }
                 getServer().getPluginManager().disablePlugin(this);
                 return;
             }
             new TotalGroupExpansion().register();
-            getLogger().info("PlaceholderAPI expansion registered successfully.");
+            if (getLogger().isLoggable(java.util.logging.Level.INFO)) {
+                getLogger().info("PlaceholderAPI expansion registered successfully.");
+            }
         } else {
             getLogger().warning("PlaceholderAPI is not installed, disabling plugin...");
             getServer().getPluginManager().disablePlugin(this);

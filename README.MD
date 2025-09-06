@@ -24,14 +24,17 @@ TotalGroupPlaceholder is a plugin for Minecraft servers that allows you to manag
 ## Available Placeholders
 
 - `%totalgroup_<group>%` — Shows the number of members in the specified LuckPerms group. Example: `%totalgroup_admin%`
+- `%totalgroup_<group>_online%` — Shows the number of online members in the specified LuckPerms group. Example: `%totalgroup_admin_online%`
 - You can use any group name registered in LuckPerms.
 
 ## Available Commands
 
 - `/totalgroup` or `/totalgroup help` - Shows information and group management options.
 - `/totalgroup <group>` — Shows the number of members in the specified group.
+- `/totalgroup <group> --online` — Shows the number of online members in the specified group.
 - `/totalgroup all` — Shows the number of members for all LuckPerms groups.
-- `/totalgroup help` — Shows help and usage information.
+- `/totalgroup all --online` — Shows the number of online members for all LuckPerms groups.
+- `/totalgroup version` — Shows the current version of the plugin.
 
 ## Requirements
 

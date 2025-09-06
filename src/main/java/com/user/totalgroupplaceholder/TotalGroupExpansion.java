@@ -28,24 +28,42 @@ public class TotalGroupExpansion extends PlaceholderExpansion {
         try {
             luckPerms = LuckPermsProvider.get();
         } catch (IllegalStateException e) {
-                return "LuckPerms not available";
+            return "LuckPerms not available";
         }
 
-        String groupName = params.toLowerCase();
+        String paramLower = params.toLowerCase();
+        boolean onlineOnly = false;
+        String groupName = paramLower;
+        if (paramLower.endsWith("_online")) {
+            onlineOnly = true;
+            groupName = paramLower.substring(0, paramLower.length() - 7); // remove _online
+        }
+
         Group group = luckPerms.getGroupManager().getGroup(groupName);
         if (group == null) {
-                return "Group not found";
+            return "Group not found";
         }
 
         try {
-            return luckPerms.getUserManager().searchAll(net.luckperms.api.node.matcher.NodeMatcher.key("group." + groupName))
-                .thenApply(map -> String.valueOf(map.size()))
-                .get();
+            if (!onlineOnly) {
+                return luckPerms.getUserManager().searchAll(net.luckperms.api.node.matcher.NodeMatcher.key("group." + groupName))
+                    .thenApply(map -> String.valueOf(map.size()))
+                    .get();
+            } else {
+                // Only count online players in the group
+                return luckPerms.getUserManager().searchAll(net.luckperms.api.node.matcher.NodeMatcher.key("group." + groupName))
+                    .thenApply(map -> String.valueOf(
+                        org.bukkit.Bukkit.getOnlinePlayers().stream()
+                            .filter(p -> map.containsKey(p.getUniqueId()))
+                            .count()
+                    ))
+                    .get();
+            }
         } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
-                return "Interrupted while searching for members";
+            return "Interrupted while searching for members";
         } catch (Exception e) {
-                return "Error while searching for members";
+            return "Error while searching for members";
         }
     }
 }
